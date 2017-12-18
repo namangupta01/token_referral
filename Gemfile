@@ -36,6 +36,9 @@ gem 'jbuilder', '~> 2.5'
 #for authentication
 gem 'devise'
 
+# admin framework for rails application
+gem 'activeadmin'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
