@@ -12,4 +12,6 @@ ActiveAdmin.register Campaign do
 #   permitted
 # end
 
+permit_params :name, :url
+
 end
