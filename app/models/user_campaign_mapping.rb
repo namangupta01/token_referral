@@ -1,0 +1,2 @@
+class UserCampaignMapping < ApplicationRecord
+end

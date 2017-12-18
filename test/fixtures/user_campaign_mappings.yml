@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  references: 
+  name: MyString
+  email: MyString
+  total_clicked: 
+
+two:
+  references: 
+  name: MyString
+  email: MyString
+  total_clicked: 
