@@ -1,2 +1,19 @@
-<h1>Home#campaign</h1>
-<p>Find me in app/views/home/campaign.html.erb</p>
+<div class="container">
+	<h1>Get referral url for <%= @campaign.name %></h1>
+	<div class="jumbotron">
+		<%= form_for @user, :url => { :controller => "home", :action => "new_campaign_user" }, method: :post do |f| %>
+			<div>
+				<%= f.label :name, "Name" %>
+				<%= f.text_field :name %><br><br>
+			</div>
+			<div>
+				<%= f.label :email, 'Email' %>
+				<%= f.email_field :email %><br><br><br>
+			</div>
+			<%= hidden_field :comap, campaign_id: @compaign_id %>
+			<div>
+				<%= f.submit "Sign Up", id: "submit", class: "invisible" %>
+			</div>	
+	<% end %>
+	</div>
+</div>
