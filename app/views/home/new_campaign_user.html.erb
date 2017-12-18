@@ -1,2 +1,4 @@
-<h1>Home#new_campaign_user</h1>
-<p>Find me in app/views/home/new_campaign_user.html.erb</p>
+<div class="container">
+	Hi <%= @new_campaign_user.name %> your referral url is : 
+	<a href="/home/referral_url/?token=<%= @new_campaign_user.token %>">/home/referral_url/?token=<%= @new_campaign_user.token %></a>
+</div>

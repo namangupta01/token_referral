@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+ .recaptcha{
+ 	display: flex;
+	justify-content: center;
+ }
+.recaptcha-submit{
+	margin-top: 20px;
+ 	display: flex;
+	justify-content: center;
+ }

@@ -13,3 +13,8 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+
+function formSubmit (token){
+	ele = document.getElementById("submit");
+	ele.className = " "
+}

@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   	get 'home/campaign'
 
-  	get 'home/new_campaign_user'
+  	post 'home/new_campaign_user'
+
+  	get 'home/referral_url'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
