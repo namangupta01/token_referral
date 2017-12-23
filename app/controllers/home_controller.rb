@@ -23,26 +23,60 @@ class HomeController < ApplicationController
     end
 	  @new_campaign_user.token = token
     @new_campaign_user.campaign_id = campaign_id
-    @new_campaign_user.save
+    @new_campaign_user.save!
   end
 
   def referral_url
+    byebug
     if user_campaign_valid_token_present?
       user_campaign_mapping = UserCampaignMapping.where(token: params[:token]).first
       url = user_campaign_mapping.redirected_url
       unless valid_session_token_already_present?
+        byebug
         user_referral_url = user_campaign_mapping.user_referral_url_mapping.new
         token = SecureRandom.hex(6)
         while UserReferralUrlMapping.where(token: token).any? do
           token = SecureRandom.hex(6)
         end
         user_referral_url.token = token
-        user_referral_url.save
+        user_referral_url.save!
         session[:token] = token
+        byebug
       end
+        byebug
         return redirect_to "https://#{url}"
     end
     render :wrong_referral_url
+  end
+
+  def referral_url_click_tracking
+    byebug
+    if valid_clicked_session_token_already_present?
+      user_referral_url = UserReferralUrlMapping.where(token: session[:token]).first
+      user_campaign_mapping = user_referral_url.user_campaign_mapping
+      user_campaign_mapping.total_clicked  = user_campaign_mapping.total_clicked + 1
+      user_campaign_mapping.save!
+      user_referral_url.clicked = true
+      user_referral_url.save!
+      byebug
+    end
+    send_file("#{Rails.root}/public/small.png",:type => 'image/png', :disposition  =>  'inline', :x_sendfile => true)
+  end
+
+  def referral_url_sale_tracking
+    byebug
+    if valid_sale_session_token_already_present?
+      user_referral_url = UserReferralUrlMapping.where(token: session[:token]).first
+      user_campaign_mapping = user_referral_url.user_campaign_mapping
+      byebug
+      user_campaign_mapping.total_sale  = user_campaign_mapping.total_sale + 1
+      user_campaign_mapping.save!
+      user_referral_url.destroy!
+      session[:token] = nil
+      byebug
+    end
+    byebug
+    send_file("#{Rails.root}/public/small.png",:type => 'image/png', :disposition  =>  'inline', :x_sendfile => true)
   end
 
   private
@@ -50,8 +84,32 @@ class HomeController < ApplicationController
   def valid_session_token_already_present?
     if session[:token]
       token = session[:token]
+      puts "fg"
       if UserReferralUrlMapping.where(token: token).any?
         if UserReferralUrlMapping.where(token: token).first.user_campaign_mapping.token == params[:token]
+          return true
+        end
+      end
+    end
+    false
+  end
+
+  def valid_clicked_session_token_already_present?
+    if session[:token]
+      token = session[:token]
+      if UserReferralUrlMapping.where(token: token).any?
+        return true
+      end
+    end
+    false
+  end
+
+  def valid_sale_session_token_already_present?
+    if session[:token]
+      token = session[:token]
+      user_campaign_mapping = UserReferralUrlMapping.where(token: token)
+      if user_campaign_mapping.any?
+        if user_campaign_mapping.first.clicked == true
           return true
         end
       end
