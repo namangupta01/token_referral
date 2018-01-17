@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20171223053018) do
     t.datetime "updated_at", null: false
     t.string "token"
     t.integer "total_sale", default: 0
+    t.integer "total_unique_click", default: 0
     t.index ["campaign_id"], name: "index_user_campaign_mappings_on_campaign_id"
   end
 

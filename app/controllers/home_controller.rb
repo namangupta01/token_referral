@@ -27,12 +27,12 @@ class HomeController < ApplicationController
   end
 
   def referral_url
-    byebug
     if user_campaign_valid_token_present?
       user_campaign_mapping = UserCampaignMapping.where(token: params[:token]).first
+      user_campaign_mapping.total_clicked = user_campaign_mapping.total_clicked + 1
+      user_campaign_mapping.save!
       url = user_campaign_mapping.redirected_url
       unless valid_session_token_already_present?
-        byebug
         user_referral_url = user_campaign_mapping.user_referral_url_mapping.new
         token = SecureRandom.hex(6)
         while UserReferralUrlMapping.where(token: token).any? do
@@ -41,7 +41,6 @@ class HomeController < ApplicationController
         user_referral_url.token = token
         user_referral_url.save!
         session[:token] = token
-        byebug
       end
         byebug
         return redirect_to "https://#{url}"
@@ -50,41 +49,40 @@ class HomeController < ApplicationController
   end
 
   def referral_url_click_tracking
-    byebug
     if valid_clicked_session_token_already_present?
       user_referral_url = UserReferralUrlMapping.where(token: session[:token]).first
       user_campaign_mapping = user_referral_url.user_campaign_mapping
-      user_campaign_mapping.total_clicked  = user_campaign_mapping.total_clicked + 1
-      user_campaign_mapping.save!
-      user_referral_url.clicked = true
-      user_referral_url.save!
-      byebug
+
+      unless user_referral_url.clicked == true
+        user_campaign_mapping.total_unique_click  = user_campaign_mapping.total_unique_click + 1
+        user_campaign_mapping.save!
+        user_referral_url.clicked = true
+        user_referral_url.save!
+      end
+      
     end
     send_file("#{Rails.root}/public/small.png",:type => 'image/png', :disposition  =>  'inline', :x_sendfile => true)
   end
 
   def referral_url_sale_tracking
-    byebug
     if valid_sale_session_token_already_present?
       user_referral_url = UserReferralUrlMapping.where(token: session[:token]).first
       user_campaign_mapping = user_referral_url.user_campaign_mapping
-      byebug
       user_campaign_mapping.total_sale  = user_campaign_mapping.total_sale + 1
       user_campaign_mapping.save!
       user_referral_url.destroy!
       session[:token] = nil
-      byebug
     end
-    byebug
     send_file("#{Rails.root}/public/small.png",:type => 'image/png', :disposition  =>  'inline', :x_sendfile => true)
   end
+
+
 
   private
 
   def valid_session_token_already_present?
     if session[:token]
       token = session[:token]
-      puts "fg"
       if UserReferralUrlMapping.where(token: token).any?
         if UserReferralUrlMapping.where(token: token).first.user_campaign_mapping.token == params[:token]
           return true
