@@ -10,6 +10,25 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
+    panel "User Camapign Details" do
+        table_for UserCampaignMapping.all do
+            column :id
+
+            column "Camapign Name" do |user_campaign_mapping|
+                user_campaign_mapping.campaign.name
+            end
+
+            column "User Name" do |user_campaign_mapping|
+                user_campaign_mapping.name
+            end
+
+            column :email
+            column :total_clicked
+            column :total_sale
+            column :total_unique_click
+        end
+    end
+
     # Here is an example of a simple dashboard with columns and panels.
     #
     # columns do
@@ -29,5 +48,6 @@ ActiveAdmin.register_page "Dashboard" do
     #     end
     #   end
     # end
-  end # content
+    # content
+    end
 end
