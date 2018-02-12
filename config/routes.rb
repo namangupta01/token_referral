@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   	get 'home/referral_url'
 
-  	get 'home/referral_url_click_tracking'
+  	get 'home/referral_url_unique_click_tracking'
 
     get 'home/referral_url_sale_tracking'
 

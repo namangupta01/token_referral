@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 20171223053018) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
     t.string "resource_type"
-    t.integer "resource_id"
+    t.bigint "resource_id"
     t.string "author_type"
-    t.integer "author_id"
+    t.bigint "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
@@ -46,15 +49,21 @@ ActiveRecord::Schema.define(version: 20171223053018) do
   create_table "campaigns", force: :cascade do |t|
     t.string "name", null: false
     t.string "url", null: false
+    t.integer "tokens_to_be_airdropped", default: 0
+    t.integer "tokens_distributed_for_each_referral", default: 0
+    t.integer "token_percentage_for_each_contribution", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "user_campaign_mappings", force: :cascade do |t|
-    t.integer "campaign_id", null: false
+    t.bigint "campaign_id", null: false
     t.string "name", null: false
     t.string "email", null: false
     t.integer "total_clicked", default: 0
+    t.string "ethereum_address", null: false
+    t.integer "referrer_id", default: 0
+    t.integer "referrals", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "token"
@@ -64,7 +73,7 @@ ActiveRecord::Schema.define(version: 20171223053018) do
   end
 
   create_table "user_referral_url_mappings", force: :cascade do |t|
-    t.integer "user_campaign_mapping_id"
+    t.bigint "user_campaign_mapping_id"
     t.string "token"
     t.boolean "clicked", default: false
     t.datetime "created_at", null: false

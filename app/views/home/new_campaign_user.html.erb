@@ -1,4 +1,5 @@
 <div class="container">
 	Hi <%= @new_campaign_user.name %> your referral url is : 
-	<a href="/home/referral_url/?token=<%= @new_campaign_user.token %>" class="data-no-turbolink">/home/referral_url/?token=<%= @new_campaign_user.token %></a>
+	<a href="<%= Rails.application.routes.default_url_options[:host] %>/home/referral_url/?token=<%= @new_campaign_user.token %>" class="data-no-turbolink"><%= Rails.application.routes.default_url_options[:host] %>/home/referral_url/?token=<%= @new_campaign_user.token %></a><br><br>
+	<textarea><%= Rails.application.routes.default_url_options[:host] %>x/home/referral_url/?token=<%= @new_campaign_user.token %></textarea>
 </div>

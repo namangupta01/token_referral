@@ -12,6 +12,6 @@ ActiveAdmin.register Campaign do
 #   permitted
 # end
 
-permit_params :name, :url
+permit_params :name, :url, :tokens_to_be_airdropped, :tokens_distributed_for_each_referral, :token_percentage_for_each_contribution
 
 end

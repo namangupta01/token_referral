@@ -10,7 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
+ * require_tree .
  *= require_self
  */
 
@@ -23,3 +23,27 @@
  	display: flex;
 	justify-content: center;
  }
+ #header{
+ 	background-color:#041E54;
+ 	height:150px;
+ 	color: white;
+ }
+
+#admin-link{
+	font-size: 200%;
+	color: white;
+	float: right;
+	padding-right: 30px;
+	padding-top: 10px;
+}
+
+#index-header{
+	font-size: 250%;
+	padding-top: 50px;
+	padding-left: 30px;
+}
+.form-wrapper{
+	width: 600px;
+	padding: auto;
+	margin: auto;
+}

@@ -15,8 +15,22 @@
   </head>
 
   <body>
+    <div id = "header">
+      <div><a href="/admin" id="admin-link">Admin</a> </div>
+      <% if params[:action] == "index" %>
+        <div id="index-header">List of all Campaigns</div>
+      <% elsif params[:action] == "campaign" %>
+        <div id="index-header">Get referral url for <%= Campaign.where(id: params[:id].to_i).first.name %></div>
+      <% elsif params[:action] == "new_campaign_user" %>
+        <div id="index-header">Get and Share your referral url </div>
+      <% end %>
+
+    </div>
   	<p class="notice"><%= notice %></p>
   	<p class="alert"><%= alert %></p>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
     <%= yield %>
   </body>
 </html>

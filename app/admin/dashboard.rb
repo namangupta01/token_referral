@@ -26,6 +26,7 @@ ActiveAdmin.register_page "Dashboard" do
             column :total_clicked
             column :total_sale
             column :total_unique_click
+            column :referrals
         end
     end
 

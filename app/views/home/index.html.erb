@@ -1,14 +1,31 @@
 <div class="container">
 <h2>Campaigns</h2>
 	<ul class="list-group">
-		<% @campaigns.each do |campaign| %>
-	    	<li class="list-group-item">
-	    		<div>
-					<%= campaign.name %>
-					<%= campaign.url %>
-					<a href="/home/campaign?id=<%= campaign.id %>">Click here</a>
-				</div>
-	    	</li>
-	    <% end %>
-  	</ul>
+		<table class="table">
+		    <thead>
+		      <tr>
+		        <th>Campaign Name</th>
+		        <th>Redirected Url</th>
+		        <th>Tokens for Each Referral</th>
+		        <th>Total Referrals</th>
+		        <th>Get Referral Url</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+				<% @campaigns.each do |campaign| %>
+					<tr>
+						<td><%= campaign.name %></td>
+						<td><%= campaign.url %></td>
+						<td><%= campaign.tokens_distributed_for_each_referral %></td>
+						<% count = 0 %>
+						<% campaign.user_campaign_mappings.each do |u| %>
+							<% count  = count + u.referrals %>
+						<% end %>
+						<td><%= count %></td>
+						<td><a href="/home/campaign?id=<%= campaign.id %>"><button class="btn btn-success">Click Here</button></a> </td>
+					</tr>
+	    		<% end %>
+	    	</tbody>
+	    </table>
+	</ul>
 </div>
