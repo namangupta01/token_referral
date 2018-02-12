@@ -26,5 +26,5 @@ test:
 production:
   <<: *default
   database: affiliate
-  username: postgres2
+  username: postgres
   password: postgres
