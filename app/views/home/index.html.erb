@@ -5,7 +5,6 @@
 		    <thead>
 		      <tr>
 		        <th>Campaign Name</th>
-		        <th>Redirected Url</th>
 		        <th>Tokens for Each Referral</th>
 		        <th>Total Referrals</th>
 		        <th>Get Referral Url</th>
@@ -15,7 +14,6 @@
 				<% @campaigns.each do |campaign| %>
 					<tr>
 						<td><%= campaign.name %></td>
-						<td><%= campaign.url %></td>
 						<td><%= campaign.tokens_distributed_for_each_referral %></td>
 						<% count = 0 %>
 						<% campaign.user_campaign_mappings.each do |u| %>

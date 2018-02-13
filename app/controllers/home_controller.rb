@@ -48,7 +48,7 @@ class HomeController < ApplicationController
       user_campaign_mapping = UserCampaignMapping.where(token: params[:token]).first
       user_campaign_mapping.total_clicked = user_campaign_mapping.total_clicked + 1
       user_campaign_mapping.save!
-      url = user_campaign_mapping.redirected_url
+      url = "#{Rails.application.routes.default_url_options[:host]}/home/campaign?id=#{user_campaign_mapping.campaign.id}"
       unless valid_session_token_for_current_referral_present?
         user_referral_url = user_campaign_mapping.user_referral_url_mapping.new
         token = SecureRandom.hex(6)

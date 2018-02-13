@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 20171223053018) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string "name", null: false
-    t.string "url", null: false
     t.integer "tokens_to_be_airdropped", default: 0
     t.integer "tokens_distributed_for_each_referral", default: 0
     t.integer "token_percentage_for_each_contribution", default: 0
