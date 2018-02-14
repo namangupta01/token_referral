@@ -12,6 +12,12 @@ ActiveAdmin.register Campaign do
 #   permitted
 # end
 
-permit_params :name, :url, :tokens_to_be_airdropped, :tokens_distributed_for_each_referral, :token_percentage_for_each_contribution
+    div class: "blank_slate_container", id: "dashboard_default_message" do
+      span class: "blank_slate" do
+        span I18n.t("active_admin.dashboard_welcome.welcome")
+        small I18n.t("active_admin.dashboard_welcome.call_to_action")
+      end
+    end
+permit_params :name, :url, :total_tokens_to_be_airdropped, :tokens_distributed_for_referral, :token_percentage_for_contribution
 
 end

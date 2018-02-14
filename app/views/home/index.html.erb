@@ -5,9 +5,10 @@
 		    <thead>
 		      <tr>
 		        <th>Campaign Name</th>
-		        <th>Tokens for Each Referral</th>
-		        <th>Total Referrals</th>
-		        <th>Get Referral Url</th>
+		        <th>Total tokens to be air dropped</th>
+		        <th>Token percentage for contribution</th>
+		        <th>Token percentage for referrel</th>
+		        <th>Please provide your details below to get tokens</th>
 		      </tr>
 		    </thead>
 		    <tbody>
@@ -19,6 +20,7 @@
 						<% campaign.user_campaign_mappings.each do |u| %>
 							<% count  = count + u.referrals %>
 						<% end %>
+						<td><%= count %></td>
 						<td><%= count %></td>
 						<td><a href="/home/campaign?id=<%= campaign.id %>"><button class="btn btn-success">Click Here</button></a> </td>
 					</tr>
