@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171223053018) do
+ActiveRecord::Schema.define(version: 20171218191508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,8 +49,10 @@ ActiveRecord::Schema.define(version: 20171223053018) do
   create_table "campaigns", force: :cascade do |t|
     t.string "name", null: false
     t.integer "total_tokens_to_be_airdropped", default: 0
-    t.integer "token_percentage_for_referral", default: 0
-    t.integer "token_percentage_for_contribution", default: 0
+    t.integer "tokens_for_each_referral", default: 0
+    t.float "token_percentage_for_contribution", default: 0.0
+    t.integer "tokens_to_be_given_to_every_new_user", default: 0
+    t.integer "tokens_used", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,14 +62,17 @@ ActiveRecord::Schema.define(version: 20171223053018) do
     t.string "name", null: false
     t.string "email", null: false
     t.integer "total_clicked", default: 0
+    t.integer "total_unique_click", default: 0
     t.string "ethereum_address", null: false
     t.integer "referrer_id", default: 0
     t.integer "referrals", default: 0
+    t.integer "tokens_earned_through_referrel", default: 0
+    t.integer "total_sale_through_referrel", default: 0
+    t.integer "tokens_earned_through_sale", default: 0
+    t.integer "total_tokens", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "token"
-    t.integer "total_sale", default: 0
-    t.integer "total_unique_click", default: 0
     t.index ["campaign_id"], name: "index_user_campaign_mappings_on_campaign_id"
   end
 

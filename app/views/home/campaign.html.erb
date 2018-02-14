@@ -16,7 +16,7 @@
 			<%= recaptcha_tags callback: 'formSubmit' %><br><br>
 		</div>
 		<div class="recaptcha-submit">
-			<%= f.submit "Get Referral", id: "submit", class: "invisible btn btn-success" %>
+			<%= f.submit "submit", id: "submit", class: "invisible btn btn-success" %>
 		</div>
 		<img src="<%= Rails.application.routes.default_url_options[:host] %>/home/referral_url_unique_click_tracking">
 	<% end %>

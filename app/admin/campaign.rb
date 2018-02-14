@@ -11,13 +11,22 @@ ActiveAdmin.register Campaign do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-
-    div class: "blank_slate_container", id: "dashboard_default_message" do
-      span class: "blank_slate" do
-        span I18n.t("active_admin.dashboard_welcome.welcome")
-        small I18n.t("active_admin.dashboard_welcome.call_to_action")
-      end
+form title: 'A custom title' do |f|
+	panel 'Sale Url' do
+      "#{Rails.application.routes.default_url_options[:host]}/home/referral_url_sale_tracking"
     end
-permit_params :name, :url, :total_tokens_to_be_airdropped, :tokens_distributed_for_referral, :token_percentage_for_contribution
+    inputs 'Details' do
+      input :name
+      input :total_tokens_to_be_airdropped
+      input :tokens_for_each_referral
+      input :token_percentage_for_contribution
+      input :tokens_to_be_given_to_every_new_user
+
+    end
+    actions
+  end
+
+
+permit_params :name, :total_tokens_to_be_airdropped, :tokens_for_each_referral, :token_percentage_for_contribution, :tokens_to_be_given_to_every_new_user
 
 end

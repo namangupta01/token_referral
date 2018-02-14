@@ -24,9 +24,13 @@ ActiveAdmin.register_page "Dashboard" do
 
             column :email
             column :total_clicked
-            column :total_sale
             column :total_unique_click
+            column :ethereum_address
             column :referrals
+            column :tokens_earned_through_referrel
+            column :total_sale_through_referrel
+            column :tokens_earned_through_sale
+            column :total_tokens
         end
     end
 

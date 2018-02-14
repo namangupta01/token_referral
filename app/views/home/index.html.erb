@@ -6,8 +6,8 @@
 		      <tr>
 		        <th>Campaign Name</th>
 		        <th>Total tokens to be air dropped</th>
-		        <th>Token percentage for contribution</th>
-		        <th>Token percentage for referrel</th>
+		        <th>Tokens for each referral</th>
+		        <th>Tokens percentage for contribution</th>
 		        <th>Please provide your details below to get tokens</th>
 		      </tr>
 		    </thead>
@@ -15,13 +15,9 @@
 				<% @campaigns.each do |campaign| %>
 					<tr>
 						<td><%= campaign.name %></td>
-						<td><%= campaign.tokens_distributed_for_each_referral %></td>
-						<% count = 0 %>
-						<% campaign.user_campaign_mappings.each do |u| %>
-							<% count  = count + u.referrals %>
-						<% end %>
-						<td><%= count %></td>
-						<td><%= count %></td>
+						<td><%= campaign.total_tokens_to_be_airdropped %></td>
+						<td><%= campaign.tokens_for_each_referral %></td>
+						<td><%= campaign.token_percentage_for_contribution %>%</td>
 						<td><a href="/home/campaign?id=<%= campaign.id %>"><button class="btn btn-success">Click Here</button></a> </td>
 					</tr>
 	    		<% end %>
