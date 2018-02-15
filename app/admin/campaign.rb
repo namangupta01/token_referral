@@ -11,9 +11,14 @@ ActiveAdmin.register Campaign do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-form title: 'A custom title' do |f|
+form title: 'Create new Campaign' do |f|
 	panel 'Sale Url' do
-      "#{Rails.application.routes.default_url_options[:host]}/home/referral_url_sale_tracking"
+      div do
+        "#{Rails.application.routes.default_url_options[:host]}/home/referral_url_sale_tracking?sale=token_sale"
+      end
+      div do
+        "For example: IF sale is of 1000 tokens then link would be #{Rails.application.routes.default_url_options[:host]}/home/referral_url_sale_tracking?sale=1000"
+      end
     end
     inputs 'Details' do
       input :name
