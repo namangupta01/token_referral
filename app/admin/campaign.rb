@@ -14,7 +14,7 @@ ActiveAdmin.register Campaign do
 form title: 'Create new Campaign' do |f|
 	panel 'Sale Url' do
       div do
-        "#{Rails.application.routes.default_url_options[:host]}/home/referral_url_sale_tracking?sale=token_sale"
+        "#{Rails.application.routes.default_url_options[:host]}/home/referral_url_sale_tracking?sale={{token_sale}}"
       end
       div do
         "For example: IF sale is of 1000 tokens then link would be #{Rails.application.routes.default_url_options[:host]}/home/referral_url_sale_tracking?sale=1000"
