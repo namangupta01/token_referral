@@ -15,5 +15,5 @@
 
 function formSubmit (token){
 	ele = document.getElementById("submit");
-	ele.className = " "
+	ele.className = "btn btn-success"
 }

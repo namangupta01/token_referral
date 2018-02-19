@@ -16,13 +16,13 @@
 
   <body>
     <div id = "header">
-      <div><a href="/admin" id="admin-link">Admin</a> </div>
+      <!-- <div><a href="/admin" id="admin-link">Admin</a> </div> -->
       <% if params[:action] == "index" %>
         <div id="index-header">List of all Campaigns</div>
       <% elsif params[:action] == "campaign" %>
-        <div id="index-header">Get <%= Campaign.where(id: params[:id].to_i).first.tokens_to_be_given_to_every_new_user %> tokens by entering details below</div>
+        <div id="index-header">Register Now & Get <%= Campaign.where(id: params[:id].to_i).first.tokens_to_be_given_to_every_new_user %> Budbo Tokens </div>
       <% elsif params[:action] == "new_campaign_user" %>
-        <div id="index-header">Get and Share your referral url </div>
+        <div id="index-header">Let's Grow Budbo Community & Share Budbo Love with Friends</div>
       <% elsif params[:action] == "campaign_ended" %>
         <div id="index-header">Sorry! Maximum Cap has been reached!</div>
       <% end %>
