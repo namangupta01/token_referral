@@ -11,6 +11,8 @@ ActiveAdmin.register Campaign do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+
+
 form title: 'Create new Campaign' do |f|
 	panel 'Sale Url' do
       div do

@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20171218191508) do
     t.float "token_percentage_for_contribution", default: 0.0
     t.integer "tokens_to_be_given_to_every_new_user", default: 0
     t.integer "tokens_used", default: 0
+    t.string "campaign_link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

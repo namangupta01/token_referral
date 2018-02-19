@@ -12,8 +12,15 @@
 //
 //= require rails-ujs
 //= require_tree .
+//= require social-share-button
+//= require social-share-button/wechat
 
 function formSubmit (token){
-	ele = document.getElementById("submit");
+	ele = document.getElementById("submit-detail");
 	ele.className = "btn btn-success"
+	ele.disabled = false;
 }
+
+$(window).on('load',function(){
+        $('#myModal').modal('show');
+    });

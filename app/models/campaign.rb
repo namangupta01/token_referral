@@ -5,6 +5,14 @@ class Campaign < ApplicationRecord
 	validate :valid_token_percentage_for_contribution
 	validate :valid_tokens_to_be_given_to_every_new_user
 
+	after_create :add_link
+
+	def add_link
+		self.campaign_link = "#{Rails.application.routes.default_url_options[:host]}/home/campaign?id=#{self.id}"
+		self.save!
+
+	end
+
 	def valid_token_for_each_referral
 		unless total_tokens_to_be_airdropped >= tokens_for_each_referral
 			errors.add(:tokens_for_each_referral, "referral tokens cannot execced total tokens ")

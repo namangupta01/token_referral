@@ -1,24 +1,55 @@
-<div class="container">
+<div class="container" style="font-size:150%">
+	Share your referal url with friends & get rewarded in Budbo Tokens<br><br>
 	Hi <%= @new_campaign_user.name %> your referral url is : 
-	<a href="<%= Rails.application.routes.default_url_options[:host] %>/home/referral_url/?token=<%= @new_campaign_user.token %>" class="data-no-turbolink"><%= Rails.application.routes.default_url_options[:host] %>/home/referral_url/?token=<%= @new_campaign_user.token %></a> <button onclick="myFunction()">Copy Link</button>
-	<textarea id="referral-url" style="display:none"><%= Rails.application.routes.default_url_options[:host] %>x/home/referral_url/?token=<%= @new_campaign_user.token %></textarea>
+	<input id="referral-url" type="text" value="<%= Rails.application.routes.default_url_options[:host] %>x/home/referral_url/?token=<%= @new_campaign_user.token %>" id="myInput">
+	<!-- <a href="<%= Rails.application.routes.default_url_options[:host] %>/home/referral_url/?token=<%= @new_campaign_user.token %>" class="data-no-turbolink"><%= Rails.application.routes.default_url_options[:host] %>/home/referral_url/?token=<%= @new_campaign_user.token %></a> --> <button onclick="myFunction()" class="btn btn-success">Copy Link</button> <br>
+	<%= social_share_button_tag("Hey! I found this amazing project, https://www.budbo.io .To be the part of this campaign, please click here", :url => Rails.application.routes.default_url_options[:host] +"/home/referral_url/?token="+@new_campaign_user.token) %>
 </div>
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css">
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js"></script>
+<br>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>&nbsp; Congratulations!</h4>
+        </div>
+        <div class="modal-body">
+          You just got <%= @new_campaign_user.campaign.tokens_to_be_given_to_every_new_user %> tokens
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="copyLinkModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>&nbsp; Referral Link Copied to Clipboard</h4>
+        </div>
+        <div class="modal-body">
+          Share your referral code with friends & get rearded in Budbo Tokens.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
 <script type="text/javascript">
 	function myFunction(){
-  		var copyText = document.getElementById("referral-url");
+		copyText = document.getElementById("referral-url");
 		copyText.select();
-  		document.execCommand("Copy");
-  		noti = new Noty({
-		    text: 'Referral URL Copied!',
-		    timeout: 2000,
-		    animation: {
-     	   		open: 'animated bounceInRight', // Animate.css class names
-        		close: 'animated bounceOutRight' // Animate.css class names
-    		}
-		}).show();
+		document.execCommand('Copy');
+		$('#copyLinkModal').modal('show');
 	}
-
-
 </script>

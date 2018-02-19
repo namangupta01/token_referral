@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
+  
+  # Commenting as don't need to show the public page as of now
   def index
-  	@campaigns = Campaign.all
+  	#@campaigns = Campaign.all
   end
 
   def campaign

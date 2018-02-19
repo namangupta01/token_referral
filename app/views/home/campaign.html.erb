@@ -1,5 +1,4 @@
 <div class="form-wrapper">
-
 	<%= form_for @user, :url => { :controller => "home", :action => "new_campaign_user", id: @campaign.id }, method: :post do |f| %>
 		<div class="form-group">
 			<%= f.label :name, "Name" %>
@@ -17,11 +16,11 @@
 			<%= recaptcha_tags callback: 'formSubmit' %><br><br>
 		</div>
 		<div class="recaptcha-submit">
-			<%= f.button :Submit, type: :submit, id: "submit", class: "invisible" %>
+			<%= f.button :Submit, type: :submit, id: "submit-detail", class: "invisible" %>
 		</div>
 		<img src="<%= Rails.application.routes.default_url_options[:host] %>/home/referral_url_unique_click_tracking">
 	<% end %>
-</script>
-
-	</div>
 </div>
+<script type="text/javascript">
+	 document.getElementById("submit-detail").disabled = true;
+</script>

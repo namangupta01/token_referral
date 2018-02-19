@@ -12,16 +12,14 @@
  *
  * require_tree .
  *= require_self
+ *= require social-share-button
  */
 
-body{
-	background-image: url(/assets/9343.jpg);
-	
-}
-img {
-	
-}
 
+
+body{
+	background-image: url(/assets/9343.jpg);	
+}
 
  .recaptcha{
  	display: flex;
@@ -33,7 +31,7 @@ img {
 	justify-content: center;
  }
  #header{
- 	background-color:#041E54;
+ 	background-color:#01437b;
  	height:150px;
  	color: white;
  }
@@ -55,4 +53,10 @@ img {
 	width: 600px;
 	padding: auto;
 	margin: auto;
+}
+
+#budbo-photo{
+	background-image: url(/assets/budbo.jpeg);
+	height: 700px;
+
 }

@@ -7,6 +7,7 @@ class CreateCampaigns < ActiveRecord::Migration[5.1]
       t.float :token_percentage_for_contribution, default: 0
       t.integer :tokens_to_be_given_to_every_new_user, default: 0
       t.integer :tokens_used, default: 0
+      t.string  :campaign_link
       t.timestamps
     end
   end
