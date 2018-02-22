@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Budbo Token Distribution</title>
+    <title>Adopters Token Distribution</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -19,9 +19,9 @@
       <div id = "header">
         <!-- <div><a href="/admin" id="admin-link">Admin</a> </div> -->
         <% if params[:action] == "campaign" %>
-          <div id="index-header">Register Now & Get <%= Campaign.where(id: params[:id].to_i).first.tokens_to_be_given_to_every_new_user %> Budbo Tokens </div>
+          <div id="index-header">Register Now & Get <%= Campaign.where(id: params[:id].to_i).first.tokens_to_be_given_to_every_new_user %> Adopters Tokens </div>
         <% elsif params[:action] == "new_campaign_user" %>
-          <div id="index-header">Let's Grow Budbo Community & Share Budbo Love with Friends</div>
+          <div id="index-header">Let's Grow Adopters Community & Share Adopters Love with Friends</div>
         <% elsif params[:action] == "campaign_ended" %>
           <div id="index-header">Sorry! Maximum Cap has been reached!</div>
         <% end %>

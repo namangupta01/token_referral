@@ -1,9 +1,9 @@
 <div class="container" style="font-size:150%">
-	Share your referal url with friends & get rewarded in Budbo Tokens<br><br>
+	Share your referal url with friends & get rewarded in Adopters Tokens<br><br>
 	Hi <%= @new_campaign_user.name %> your referral url is : 
 	<input id="referral-url" type="text" value="<%= Rails.application.routes.default_url_options[:host] %>x/home/referral_url/?token=<%= @new_campaign_user.token %>" id="myInput">
 	<!-- <a href="<%= Rails.application.routes.default_url_options[:host] %>/home/referral_url/?token=<%= @new_campaign_user.token %>" class="data-no-turbolink"><%= Rails.application.routes.default_url_options[:host] %>/home/referral_url/?token=<%= @new_campaign_user.token %></a> --> <button onclick="myFunction()" class="btn btn-success">Copy Link</button> <br>
-	<%= social_share_button_tag("Hey! I found this amazing project, https://www.budbo.io .To be the part of this campaign, please click here", :url => Rails.application.routes.default_url_options[:host] +"/home/referral_url/?token="+@new_campaign_user.token) %>
+	<%= social_share_button_tag("Hey! I found this amazing project, https://www.adopters.cc .To be the part of this campaign, please click here", :url => Rails.application.routes.default_url_options[:host] +"/home/referral_url/?token="+@new_campaign_user.token) %>
 </div>
 <br>
 <div class="modal fade" id="myModal" role="dialog">
@@ -35,7 +35,7 @@
           <h4 class="modal-title"><i class="fa fa-exclamation-circle"></i>&nbsp; Referral Link Copied to Clipboard</h4>
         </div>
         <div class="modal-body">
-          Share your referral code with friends & get rewarded in Budbo Tokens.
+          Share your referral code with friends & get rewarded in Adopters Tokens.
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
